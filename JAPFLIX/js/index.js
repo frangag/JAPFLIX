@@ -29,11 +29,13 @@ let input = document.getElementById("inputBuscar");
 //Agrego evento al boton.
 let botonBuscar = document.getElementById("btnBuscar");
 botonBuscar.addEventListener("click", function () {
+  if (input.value != 0){ //Este if verifica que el usuario haya puesto algún valor en el campo de búsqueda
   lista.innerHTML = "";
   let movie = getMovieByName(input.value);
   //Mostrar en pantalla
   imprimirPantalla(movie);
   //console.log(movie)
+}
 });
 let lista = document.getElementById("lista");
 
@@ -46,10 +48,13 @@ function imprimirPantalla(array) {
   let disableStars = `<i class="fa fa-star "></i>`;
 
   for (i = 0; i < array.length; i++) {
-    for (j = 0; j <= array[i].vote_average; j++) {
+    let score = array[i].vote_average;
+    let scoreRedondeado = Math.round(score/2);
+    console.log(scoreRedondeado);
+    for (j = 1; j <= scoreRedondeado; j++) {
       stars += enableStars;
     }
-    for (k = array[i].vote_average; k < 9; k++) {
+    for (k = scoreRedondeado; k < 5; k++) {
       stars += disableStars;
     }
     stars += `</div>`;
