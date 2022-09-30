@@ -68,29 +68,33 @@ function imprimirPantalla(array) {
     </div>
     `;
     stars = `<div class="d-flex justify-content-between align-items-center">
-        <div class="ratings">`;
+        <div class="ratings">`;  
+}
+}
+//PLACEMENT MOVIE
+function showmovies(movieID){
 
-    //____________________________________________________________________________________________________________
+const movie = movies.find(({id})=> id===movieID)
+let nombre= movie.title
+let reseña= movie.overview
+let generos= movie.genres
+//console.log({nombre, reseña, generos, movie})
+    if (movie){
+       
+        document.getElementById("selectedMoviesInfo").innerHTML= 
+        `<h2>${nombre}</h2><br><h4>${reseña}<br>${generos.map(function(genero){return `<span>${genero.name}</span>`}).join(" ")}</h4>`
+        setDropdownMenu(movie)
+    }
+}
+//DROPDOWN MENU
+function setDropdownMenu({release_date, runtime, budget, revenue}){
 
-    /*document.getElementById("movie"+array[i].id).addEventListener("click", function(){document.getElementById("selectedMoviesInfo").textContent="test"})*/
-
-    let nombre = array[i].title;
-    let reseña = array[i].overview;
-    let generos = array[i].genres;
-
-    let containerDesplegado = document.getElementById("selectedMoviesInfo");
-
-    document.getElementById("botonDesplegar").onclick = function () {
-      containerDesplegado.innerHTML += `<h2>${nombre}</h2><br><h4>${reseña}<br>${generos}</h4>`;
-    };
-    //BOTON DESPLEGABLE
-
-    let dropdownMenu = document.getElementById("menudesplegable");
-    dropdownMenu.innerHTML += `
-        <li><a class="dropdown-item" href="">Year: ${array[i].release_date}</a></li>
-        <li><a class="dropdown-item" href="">Runtime: ${array[i].runtime}</a></li>
-        <li><a class="dropdown-item" href="">Budget: ${array[i].budget}</a></li>
-        <li><a class="dropdown-item" href="">Revenue: ${array[i].revenue}</a></li>
-    `;
-  }
+    let dropdownMenu= document.getElementById("menudesplegable")
+    dropdownMenu.innerHTML=
+      `
+          <li><a class="dropdown-item" href="">Year: ${release_date.split("-")[0]}</a></li>
+          <li><a class="dropdown-item" href="">Runtime: ${runtime}</a></li>
+          <li><a class="dropdown-item" href="">Budget: ${budget}</a></li>
+          <li><a class="dropdown-item" href="">Revenue: ${revenue}</a></li>
+      `
 }
