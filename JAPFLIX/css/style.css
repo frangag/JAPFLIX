@@ -87,6 +87,7 @@ body {
 .tagline {
   display: flex;
   justify-content: start;
+  font-style: italic;
 }
 
 .title {
