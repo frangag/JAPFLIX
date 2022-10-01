@@ -1,80 +1,107 @@
 .img-card-fit {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 
 .img-cont {
-    height: 200px;
-    overflow: hidden;
-    background-color: beige;
+  height: 200px;
+  overflow: hidden;
+  background-color: beige;
 }
 
-.card-content{
-    height: 150px;
-    overflow: auto;
+.card-content {
+  height: 150px;
+  overflow: auto;
 }
 
 main {
-    min-height: calc(100vh - 100px);
-  }
-
-.checked{
-    color: orange;
+  min-height: calc(100vh - 100px);
 }
 
-.offcanvas-top{
-    height: fit-content;
+.checked {
+  color: orange;
 }
 
-#lista{
-    color: white;
+.offcanvas-top {
+  height: fit-content;
 }
 
-h6{
-    color: rgb(160, 160, 160);
+#lista {
+  color: white;
 }
 
-body{
-    background-color:#eef3f4;    
-    }
-    
-    .height-100{
-        height:100vh;
-    }
-    
-    .card{
-        width:380px;
-        border:none;
-        height:280px;
-    }
-    
-    .ratings{
-        margin-right:10px;
-    }
-    
-    .ratings i{
-        
-        color:#cecece;
-        font-size:32px;
-    }
-    
-    .rating-color{
-        color:#fbc634 !important;
-    }
-    
-    .review-count{
-        font-weight:400;
-        margin-bottom:2px;
-        font-size:24px !important;
-    }
-    
-    .small-ratings i{
-      color:#cecece;   
-    }
-    
-    .review-stat{
-        font-weight:300;
-        font-size:18px;
-        margin-bottom:2px;
-    }
+h6 {
+  color: rgb(160, 160, 160);
+}
+
+body {
+  background-color: #eef3f4;
+}
+
+.height-100 {
+  height: 100vh;
+}
+
+.card {
+  width: 380px;
+  border: none;
+  height: 280px;
+}
+
+.ratings {
+  margin-right: 10px;
+}
+
+.ratings i {
+  color: #cecece;
+  font-size: 32px;
+}
+
+.rating-color {
+  color: #fbc634 !important;
+}
+
+.review-count {
+  font-weight: 400;
+  margin-bottom: 2px;
+  font-size: 24px !important;
+}
+
+.small-ratings i {
+  color: #cecece;
+}
+
+.review-stat {
+  font-weight: 300;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: end;
+  padding-right: 1rem;
+}
+
+.tagline {
+  display: flex;
+  justify-content: start;
+}
+
+.title {
+  display: flex;
+  justify-content: start;
+}
+
+.overview{
+font-weight:normal;
+}
+
+hr{
+  border-top:2px solid darkgray;
+}
+
+#off{
+  border:10px black;
+}

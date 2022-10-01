@@ -29,13 +29,14 @@ let input = document.getElementById("inputBuscar");
 //Agrego evento al boton.
 let botonBuscar = document.getElementById("btnBuscar");
 botonBuscar.addEventListener("click", function () {
-  if (input.value != 0){ //Este if verifica que el usuario haya puesto algún valor en el campo de búsqueda
-  lista.innerHTML = "";
-  let movie = getMovieByName(input.value);
-  //Mostrar en pantalla
-  imprimirPantalla(movie);
-  //console.log(movie)
-}
+  if (input.value != 0) {
+    //Este if verifica que el usuario haya puesto algún valor en el campo de búsqueda
+    lista.innerHTML = "";
+    let movie = getMovieByName(input.value);
+    //Mostrar en pantalla
+    imprimirPantalla(movie);
+    //console.log(movie)
+  }
 });
 let lista = document.getElementById("lista");
 
@@ -49,8 +50,7 @@ function imprimirPantalla(array) {
 
   for (i = 0; i < array.length; i++) {
     let score = array[i].vote_average;
-    let scoreRedondeado = Math.round(score/2);
-    console.log(scoreRedondeado);
+    let scoreRedondeado = Math.round(score / 2);
     for (j = 1; j <= scoreRedondeado; j++) {
       stars += enableStars;
     }
@@ -59,42 +59,46 @@ function imprimirPantalla(array) {
     }
     stars += `</div>`;
 
-    lista.innerHTML += `<div   class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"  id="botonDesplegar">
+    lista.innerHTML += `<div onclick="showmovies(${array[i].id})" class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"  id="botonDesplegar">
         <div id="movie${array[i].id}" >
-             <h5>${array[i].title}</h5>
-                 <h6>${array[i].overview}</h6>
+             <h5 class="title">${array[i].title}</h5>
+                 <h6 class="tagline">${array[i].tagline}</h6>
                      ${stars}
         </div>
     </div>
+    <hr>
     `;
     stars = `<div class="d-flex justify-content-between align-items-center">
-        <div class="ratings">`;  
-}
+        <div class="ratings">`;
+  }
 }
 //PLACEMENT MOVIE
-function showmovies(movieID){
-
-const movie = movies.find(({id})=> id===movieID)
-let nombre= movie.title
-let reseña= movie.overview
-let generos= movie.genres
-//console.log({nombre, reseña, generos, movie})
-    if (movie){
-       
-        document.getElementById("selectedMoviesInfo").innerHTML= 
-        `<h2>${nombre}</h2><br><h4>${reseña}<br>${generos.map(function(genero){return `<span>${genero.name}</span>`}).join(" ")}</h4>`
-        setDropdownMenu(movie)
-    }
+function showmovies(movieID) {
+  const movie = movies.find(({ id }) => id === movieID);
+  let nombre = movie.title;
+  let reseña = movie.overview;
+  let generos = movie.genres;
+  console.log({ nombre, reseña, generos, movie });
+  if (movie) {
+    document.getElementById(
+      "selectedMoviesInfo"
+    ).innerHTML = `<h2 class="offcanvas-title">${nombre}</h2><br><h5 class="overview">${reseña}</h5> <hr id="off"> ${generos
+      .map(function (genero) {
+        return `<span class="text-muted">${genero.name}</span>`;
+      })
+      .join(" - ")}`;
+    setDropdownMenu(movie);
+  }
 }
 //DROPDOWN MENU
-function setDropdownMenu({release_date, runtime, budget, revenue}){
-
-    let dropdownMenu= document.getElementById("menudesplegable")
-    dropdownMenu.innerHTML=
-      `
-          <li><a class="dropdown-item" href="">Year: ${release_date.split("-")[0]}</a></li>
-          <li><a class="dropdown-item" href="">Runtime: ${runtime}</a></li>
-          <li><a class="dropdown-item" href="">Budget: ${budget}</a></li>
-          <li><a class="dropdown-item" href="">Revenue: ${revenue}</a></li>
-      `
+function setDropdownMenu({ release_date, runtime, budget, revenue }) {
+  let dropdownMenu = document.getElementById("menudesplegable");
+  dropdownMenu.innerHTML = `
+          <li><a class="dropdown-item">Year: ${
+            release_date.split("-")[0]
+          }</a></li>
+          <li><a class="dropdown-item">Runtime: ${runtime} mins</a></li>
+          <li><a class="dropdown-item">Budget: $${budget}</a></li>
+          <li><a class="dropdown-item">Revenue: $${revenue}</a></li>
+      `;
 }
